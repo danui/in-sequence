@@ -121,7 +121,7 @@
                 }).run();
             }, /bad_state/);
         });
-        
+
         it('should throw bad_args if no callback is provided to add()', function () {
             assert.throws(function () {
                 (new Sequence()).add();
@@ -136,7 +136,7 @@
                 (new Sequence()).add(1, function (next) {});
             }, /bad_args/);
         });
-        
+
         it('should throw bad_args if label provided to next() is not a string', function () {
             assert.throws(function () {
                 (new Sequence()).add(function (next) {
@@ -154,7 +154,7 @@
                 }).run();
             }, /bad_label/);
         });
-        
+
         it('should throw bad_args if label provided to run() is not a string', function () {
             assert.throws(function () {
                 (new Sequence()).add('first', function (next) {
