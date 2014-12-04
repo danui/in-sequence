@@ -1,16 +1,15 @@
 (function () {
 
     'use strict';
-    
+
     module.exports = function () {
         var self = this;
         var chain = [];
         var labels = {};
-        var ctx = {};
-        
+
         self.add = function (x, y) {
             var label, callback;
-            
+
             // sort out what the arguments are.
             if (typeof x === 'string' && typeof y === 'function') {
                 label = x;
@@ -19,25 +18,36 @@
                 label = undefined;
                 callback = x;
             } else {
-                throw new Error('bad inputs');
+                throw new Error('bad_args');
             }
-            
+
             if (label) {
                 if (label in labels) {
-                    throw new Error('bad label, not unique');
+                    throw new Error('bad_label, not unique');
                 }
                 labels[label] = chain.length;
             }
             chain.push(callback);
+            return self;
         };
-        
-        self.run = function () {
-            var n;
-            
+
+        self.run = function (firstLabel) {
+            var n, ctx;
+
+            self.add = function () {
+                throw new Error('bad_state, already called run()');
+            };
+
+            self.run = function () {
+                throw new Error('bad_state, already called run()');
+            };
+
             n = chain.length;
-            
+
             // Nothing to do if chain is empty.
             if (n === 0) return;
+
+            ctx = {};
 
             function invoke(idx) {
                 var callback;
@@ -45,8 +55,10 @@
                     callback = chain[idx];
                     callback(function (label) {
                         if (label) {
-                            if (!(label in labels)) {
-                                throw new Error('unknown label: ' + label);
+                            if (typeof label !== 'string') {
+                                throw new Error('bad_args, label should be a string');
+                            } else if (!(label in labels)) {
+                                throw new Error('bad_label, unknown label: ' + label);
                             }
                             invoke(labels[label]);
                         } else {
@@ -55,8 +67,15 @@
                     }, ctx);
                 }
             }
-            invoke(0);
+            if (firstLabel === undefined) {
+                invoke(0);
+            } else if (typeof firstLabel !== 'string') {
+                throw new Error('bad_args, label should be a string');
+            } else if (!(firstLabel in labels)) {
+                throw new Error('bad_label, unknown label: ' + firstLabel);
+            } else {
+                invoke(labels[firstLabel]);
+            }
         };
     };
-    
 }());
