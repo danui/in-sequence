@@ -1,10 +1,10 @@
 {
     "name": "in-sequence",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Execute steps in sequence.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/danui/in-sequence.git#release"
+        "url": "https://github.com/danui/in-sequence.git"
     },
     "main": "src/in-sequence.js",
     "scripts": {
