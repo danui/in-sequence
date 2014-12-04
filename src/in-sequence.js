@@ -55,7 +55,9 @@
                     callback = chain[idx];
                     callback(function (label) {
                         if (label) {
-                            if (!(label in labels)) {
+                            if (typeof label !== 'string') {
+                                throw new Error('bad_args, label should be a string');
+                            } else if (!(label in labels)) {
                                 throw new Error('bad_label, unknown label: ' + label);
                             }
                             invoke(labels[label]);
@@ -70,7 +72,7 @@
             } else if (typeof firstLabel !== 'string') {
                 throw new Error('bad_args, label should be a string');
             } else if (!(firstLabel in labels)) {
-                throw new Error('bad_label, unknown label: ' + label);
+                throw new Error('bad_label, unknown label: ' + firstLabel);
             } else {
                 invoke(labels[firstLabel]);
             }
