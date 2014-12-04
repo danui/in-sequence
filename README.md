@@ -4,6 +4,18 @@ in-sequence
 This package provides a constructor for a Sequence object that executes
 steps in sequence.
 
+Sequence
+--------
+
+    +------------------------+
+    | Sequence               |
+    |------------------------|
+    | + add(callback)        |
+    | + add(label, callback) |
+    | + run()                |
+    | + run(label)           |
+    +------------------------+
+
 Creation
 --------
 
