@@ -1,11 +1,11 @@
 {
-  "name": "in-sequence",
-  "version": "0.0.0",
-  "description": "Execute functions sequentially.",
-  "main": "src/in-sequence.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "in-sequence",
+    "version": "0.0.0",
+    "description": "Execute functions sequentially.",
+    "main": "src/in-sequence.js",
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "hsienjin@gmail.com",
+    "license": "ISC"
 }
