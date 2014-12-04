@@ -1,7 +1,11 @@
 {
     "name": "in-sequence",
-    "version": "0.0.0",
-    "description": "Execute functions sequentially.",
+    "version": "0.1.0",
+    "description": "Execute steps in sequence.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/danui/in-sequence.git#release"
+    },
     "main": "src/in-sequence.js",
     "scripts": {
         "test": "mocha"
